@@ -58,7 +58,7 @@ resource "aws_security_group" "elb" {
 }
 
 resource "aws_elb" "web" {
-  name = "example-elb"
+  name = "es-elb"
 
   # The same availability zone as our instance
   availability_zones = ["${aws_instance.web.*.availability_zone}"]
@@ -118,7 +118,7 @@ resource "aws_instance" "web" {
   user_data = "${file("userdata.sh")}"
   #Instance tags
   tags {
-    Name = "elb-example"
+    Name = "es-cluster"
  }
 }
 
