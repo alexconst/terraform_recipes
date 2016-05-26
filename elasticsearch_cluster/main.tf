@@ -76,7 +76,7 @@ resource "aws_elb" "web" {
     timeout = 3
     target = "HTTP:80/"
     interval = 30
-  }  
+  }
 
   # The instance is registered automatically
   instances = ["${aws_instance.web.id}"]
@@ -96,7 +96,7 @@ resource "aws_lb_cookie_stickiness_policy" "default" {
 }
 
 resource "aws_instance" "web" {
-  
+
   instance_type = "t2.micro"
 
   # Lookup the correct AMI based on the region

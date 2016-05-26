@@ -1,4 +1,24 @@
-# ELB with stickiness Example
+# About
+
+ElasticSearch cluster of 3 nodes behind an AWS ELB.
+
+
+
+# Deploying
+
+Make sure your AWS credentials are "readable" (eg: environment variables, or $HOME/.aws/...).  
+By default `developer` and `eu-west-1` are used as `key_name` and `aws_region`.
+
+```bash
+terraform apply -var 'key_name=YOUR_KEY_NAME' 'aws_region=YOUR_REGION'
+```
+
+
+
+
+
+
+
 
 The example launches a web server, installs nginx, creates an ELB for instance. It also creates security groups for the ELB and EC2 instance. 
 
