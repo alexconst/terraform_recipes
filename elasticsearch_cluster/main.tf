@@ -61,7 +61,7 @@ resource "aws_elb" "web" {
   name = "example-elb"
 
   # The same availability zone as our instance
-  availability_zones = ["${aws_instance.web.availability_zone}"]
+  availability_zones = ["${aws_instance.web.*.availability_zone}"]
   security_groups = ["${aws_security_group.elb.id}"]
   listener {
     instance_port = 80
@@ -79,7 +79,7 @@ resource "aws_elb" "web" {
   }
 
   # The instance is registered automatically
-  instances = ["${aws_instance.web.id}"]
+  instances = ["${aws_instance.web.*.id}"]
 
   cross_zone_load_balancing = true
   idle_timeout = 400
@@ -96,6 +96,8 @@ resource "aws_lb_cookie_stickiness_policy" "default" {
 }
 
 resource "aws_instance" "web" {
+
+  count = 3
 
   instance_type = "t2.micro"
 
@@ -119,3 +121,4 @@ resource "aws_instance" "web" {
     Name = "elb-example"
  }
 }
+
