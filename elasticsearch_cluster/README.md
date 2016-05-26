@@ -1,6 +1,6 @@
 # About
 
-ElasticSearch cluster of 3 nodes behind an AWS ELB.
+Elasticsearch cluster of 3 nodes behind an AWS ELB.
 
 
 
