@@ -1,6 +1,10 @@
 # About
 
-Elasticsearch cluster of 3 nodes behind an AWS ELB.
+Elasticsearch cluster behind an AWS ELB.
+
+- 3 Elasticsearch nodes
+- AWS ELB with stickiness enabled
+- creates security groups for the Elasticsearch nodes (opens port 22 and 9200) and the AWS ELB (opens port 9200)
 
 
 
@@ -13,19 +17,13 @@ By default `developer` and `eu-west-1` are used as `key_name` and `aws_region`.
 terraform apply -var 'key_name=YOUR_KEY_NAME' 'aws_region=YOUR_REGION'
 ```
 
+To access it:
+```bash
+elb_dns=$(jq '."modules"[].outputs["ELB address"]' terraform.tfstate | sed 's/"//g')
+firefox $elb_dns
+```
 
 
 
 
 
-
-
-The example launches a web server, installs nginx, creates an ELB for instance. It also creates security groups for the ELB and EC2 instance. 
-
-To run, configure your AWS provider as described in https://www.terraform.io/docs/providers/aws/index.html
-
-Run this example using:
-
-    terraform apply -var 'key_name=YOUR_KEY_NAME'
-
-Wait a couple of minutes for the EC2 userdata to install nginx, and then type the ELB DNS Name from outputs in your browser and see the nginx welcome page

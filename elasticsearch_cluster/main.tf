@@ -19,8 +19,8 @@ resource "aws_security_group" "default" {
 
   # HTTP access from anywhere
   ingress {
-    from_port = 80
-    to_port = 80
+    from_port = "${var.elastic_port}"
+    to_port = "${var.elastic_port}"
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -42,8 +42,8 @@ resource "aws_security_group" "elb" {
 
   # HTTP access from anywhere
   ingress {
-    from_port = 80
-    to_port = 80
+    from_port = "${var.elastic_port}"
+    to_port = "${var.elastic_port}"
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -64,9 +64,9 @@ resource "aws_elb" "web" {
   availability_zones = ["${aws_instance.web.*.availability_zone}"]
   security_groups = ["${aws_security_group.elb.id}"]
   listener {
-    instance_port = 80
+    instance_port = "${var.elastic_port}"
     instance_protocol = "http"
-    lb_port = 80
+    lb_port = "${var.elastic_port}"
     lb_protocol = "http"
   }
 
@@ -74,7 +74,7 @@ resource "aws_elb" "web" {
     healthy_threshold = 2
     unhealthy_threshold = 2
     timeout = 3
-    target = "HTTP:80/"
+    target = "HTTP:${var.elastic_port}/"
     interval = 30
   }
 
@@ -91,7 +91,7 @@ resource "aws_elb" "web" {
 resource "aws_lb_cookie_stickiness_policy" "default" {
       name = "lbpolicy"
       load_balancer = "${aws_elb.web.id}"
-      lb_port = 80
+      lb_port = "${var.elastic_port}"
       cookie_expiration_period = 600
 }
 

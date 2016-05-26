@@ -15,3 +15,8 @@ variable "aws_amis" {
   }
 }
 
+variable "elastic_port" {
+  description = "Elasticsearch port"
+  default = 80
+}
+
