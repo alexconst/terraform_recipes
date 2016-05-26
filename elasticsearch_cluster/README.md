@@ -3,7 +3,7 @@
 Elasticsearch cluster behind an AWS ELB.
 
 - 3 Elasticsearch nodes
-- AWS ELB with stickiness enabled
+- AWS ELB with stickiness enabled, but the expiration is set to 10s as to allow checking the ELB in action
 - creates security groups for the Elasticsearch nodes (opens port 22 and 9200) and the AWS ELB (opens port 9200)
 
 
@@ -17,10 +17,10 @@ By default `developer` and `eu-west-1` are used as `key_name` and `aws_region`.
 terraform apply -var 'key_name=YOUR_KEY_NAME' 'aws_region=YOUR_REGION'
 ```
 
-To access it:
+Wait a couple of minutes and then to access it:
 ```bash
 elb_dns=$(jq '."modules"[].outputs["ELB address"]' terraform.tfstate | sed 's/"//g')
-firefox $elb_dns
+firefox $elb_dns:9200
 ```
 
 

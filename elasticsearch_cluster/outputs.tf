@@ -3,6 +3,6 @@ output "ELB address" {
 }
 
 output "Elasticsearch nodes" {
-  value = "${join("\n\t\t\t", aws_instance.web.*.public_dns)}"
+  value = "${join(",", aws_instance.web.*.public_dns)}"
 }
 

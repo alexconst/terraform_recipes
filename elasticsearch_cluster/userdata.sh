@@ -4,6 +4,9 @@
 #apt-get install -y nginx > /tmp/nginx.log
 
 
+
+
+
 # refresh package listing
 apt-get update -y
 
@@ -20,6 +23,7 @@ apt-get install -y elasticsearch
 
 # configure Elasticsearch
 echo -e "\n\n\nhttp.port: 9200" >> /etc/elasticsearch/elasticsearch.yml
+echo -e "network.bind_host: 0.0.0.0" >> /etc/elasticsearch/elasticsearch.yml
 echo -e "\n\n\nES_USE_IPV4=y" >> /etc/default/elasticsearch
 
 # configure Elasticsearch to start during boot
