@@ -1,11 +1,5 @@
 #!/bin/bash -v
 
-#apt-get update -y
-#apt-get install -y nginx > /tmp/nginx.log
-
-
-
-
 
 # refresh package listing
 apt-get update -y
@@ -32,6 +26,4 @@ systemctl enable elasticsearch.service
 # start service
 systemctl start elasticsearch.service
 
-# check it
-# wget -q -O - 127.0.0.1:9200
 

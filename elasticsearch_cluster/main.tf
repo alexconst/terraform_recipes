@@ -60,8 +60,6 @@ resource "aws_security_group" "elb" {
 resource "aws_elb" "web" {
   name = "es-elb"
 
-  instance_type = "t2.micro"
-
   # The same availability zone as our instance
   availability_zones = ["${aws_instance.web.*.availability_zone}"]
   security_groups = ["${aws_security_group.elb.id}"]
