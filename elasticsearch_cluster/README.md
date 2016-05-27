@@ -24,6 +24,8 @@ firefox $elb_dns:9200
 ```
 
 
+# TODO
 
+- provision with Ansible, with support from one of these helper tools: [terraform-inventory](https://github.com/adammck/terraform-inventory), [terraform.py](https://github.com/CiscoCloud/terraform.py).
 
 
