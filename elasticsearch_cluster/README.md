@@ -7,6 +7,8 @@ Elasticsearch cluster behind an AWS ELB.
 - creates security groups for the Elasticsearch nodes (opens port 22 and 9200) and the AWS ELB (opens port 9200)
 - for demonstration purposes the ES instances are set to `t2.micro`, but on a real scenario these could be adjusted to better fit the problem at hand (eg: logging, searching, amount of data).
 
+This recipe started from the example at terraform/examples/aws-elb.
+
 
 # Deploying
 
